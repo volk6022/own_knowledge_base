@@ -42,15 +42,11 @@ Community plugins → включить:
 Запусти `setup-mcps.bat` один раз (подробнее в `schema/mcp-setup.md`):
 
 ```bat
-REM Установка QMD и mcp-obsidian + обновление claude_desktop_config.json
+REM Устанавливает QMD и mcp-obsidian, индексирует vault, обновляет claude_desktop_config.json
 setup-mcps.bat
 ```
 
-Перед каждым сеансом с Claude запускай QMD-сервер:
-
-```bat
-start-qmd.bat
-```
+После этого Claude Desktop запускает QMD автоматически (stdio). `start-qmd.bat` нужен только если хочешь держать QMD как постоянный HTTP-сервер.
 
 ### 3. Claude Skills (уже установлены)
 

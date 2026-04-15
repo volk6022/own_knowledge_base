@@ -10,25 +10,28 @@
 
 **Что делает:** Гибридный поиск по vault (BM25 + vector + LLM rerank), всё локально через node-llama-cpp + GGUF. MCP endpoint: `http://localhost:8181/mcp`.
 
-**Установка:**
+**Установка и первичная индексация:**
 
 ```bash
 # Глобальная установка
 npm install -g @tobilu/qmd
 
-# Запуск сервера (нужен перед использованием Claude)
-npx @tobilu/qmd --vault "C:\path\to\local_knowlege_base" --port 8181
+# Один раз: добавить vault как коллекцию (индексация)
+npx @tobilu/qmd collection add "C:\path\to\own_knowledge_base"
 ```
 
-**В claude_desktop_config.json:**
+**В claude_desktop_config.json** (stdio — Claude запускает QMD сам):
 ```json
 "qmd": {
   "command": "npx",
-  "args": ["@tobilu/qmd", "--vault", "C:\\path\\to\\local_knowlege_base", "--port", "8181"]
+  "args": ["@tobilu/qmd", "mcp"]
 }
 ```
 
-> QMD запускается как HTTP-сервер. Claude подключается к нему через `http://localhost:8181/mcp`.
+**Опционально — запуск как постоянный HTTP-сервер** (start-qmd.bat):
+```bash
+npx @tobilu/qmd mcp --http --port 8181
+```
 
 ---
 
@@ -121,7 +124,7 @@ claude mcp list
   "mcpServers": {
     "qmd": {
       "command": "npx",
-      "args": ["qmd", "--vault", "/ABSOLUTE/PATH/TO/local_knowlege_base"]
+      "args": ["@tobilu/qmd", "mcp"]
     },
     "obsidian": {
       "command": "python",
