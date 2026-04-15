@@ -39,11 +39,11 @@ Community plugins → включить:
 
 ### 2. MCP-серверы
 
-Запусти `setup-mcps.ps1` один раз (подробнее в `schema/mcp-setup.md`):
+Запусти `setup-mcps.bat` один раз (подробнее в `schema/mcp-setup.md`):
 
-```powershell
-# Установка QMD и mcp-obsidian + обновление claude_desktop_config.json
-.\setup-mcps.ps1
+```bat
+REM Установка QMD и mcp-obsidian + обновление claude_desktop_config.json
+setup-mcps.bat
 ```
 
 Перед каждым сеансом с Claude запускай QMD-сервер:
