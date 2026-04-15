@@ -7,15 +7,14 @@
 #   3. Обновляет claude_desktop_config.json
 #
 # ПЕРЕД ЗАПУСКОМ:
-#   - Укажи VAULT_PATH ниже (абсолютный путь к папке local_knowlege_base)
 #   - Для mcp-obsidian: установи плагин "Local REST API" в Obsidian,
-#     получи API Key и вставь его в OBSIDIAN_API_KEY
+#     получи API Key и вставь его в OBSIDIAN_API_KEY ниже
 # ============================================================
 
 # ┌─────────────────────────────────────────────────────────┐
 # │  НАСТРОЙКИ — отредактируй эти значения                  │
 # └─────────────────────────────────────────────────────────┘
-$VAULT_PATH      = "C:\Users\bhunp\Documents\local_knowlege_base"   # <-- путь к vault
+$VAULT_PATH      = $PSScriptRoot                                     # папка скрипта = корень vault
 $OBSIDIAN_API_KEY = "YOUR_OBSIDIAN_API_KEY"                          # <-- ключ из плагина Local REST API
 $OBSIDIAN_HOST   = "http://localhost:27123"                          # менять не нужно
 

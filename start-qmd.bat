@@ -4,8 +4,8 @@ REM  start-qmd.bat  —  Запуск QMD сервера для ML/CV vault
 REM  Запускай этот файл перед открытием Claude Desktop
 REM ──────────────────────────────────────────────────────
 
-REM Укажи путь к своему vault:
-set VAULT=C:\Users\bhunp\Documents\local_knowlege_base
+REM Vault = папка, где лежит этот bat-файл
+set VAULT=%~dp0
 
 echo [QMD] Запуск семантического поиска...
 echo [QMD] Vault: %VAULT%
