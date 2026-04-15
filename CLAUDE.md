@@ -4,22 +4,22 @@
 
 ## Структура папок
 
-| Папка | Назначение |
-|---|---|
-| `00-Inbox/` | Необработанный захват: быстрые заметки, клипы, идеи |
-| `01-Projects/` | Активные ML-проекты с дедлайнами и экспериментами |
-| `02-Papers/` | Заметки по статьям (arXiv, Semantic Scholar, синхронизация с Zotero) |
-| `03-Concepts/` | Атомарные концепт-заметки (Attention, BatchNorm, FPN, ViT...) |
-| `04-Tasks/` | CV-задачи как MOC (Object Detection, Segmentation, Depth Estimation...) |
-| `05-Models/` | Карточки моделей с бенчмарками и frontmatter-метаданными |
-| `06-Benchmarks/` | Датасеты, leaderboards, SOTA-результаты |
-| `07-Code-Snippets/` | Переиспользуемые паттерны кода Python/PyTorch |
-| `08-MOCs/` | Навигационные хабы (Maps of Content) |
-| `09-Archive/` | Завершённые проекты и устаревший контент |
-| `_Templates/` | Шаблоны Templater для создания новых заметок |
-| `raw/` | **Karpathy pattern**: исходные документы, PDF, репозитории (человек отбирает) |
-| `wiki/` | **Karpathy pattern**: скомпилированная LLM-база из .md-файлов (ты пишешь) |
-| `schema/` | **Karpathy pattern**: инструкции для LLM, правила, промпты |
+| Папка               | Назначение                                                                    |
+| ------------------- | ----------------------------------------------------------------------------- |
+| `00-Inbox/`         | Необработанный захват: быстрые заметки, клипы, идеи                           |
+| `01-Projects/`      | Активные ML-проекты с дедлайнами и экспериментами                             |
+| `02-Papers/`        | Заметки по статьям (arXiv, Semantic Scholar, синхронизация с Zotero)          |
+| `03-Concepts/`      | Атомарные концепт-заметки (Attention, BatchNorm, FPN, ViT...)                 |
+| `04-Tasks/`         | CV-задачи как MOC (Object Detection, Segmentation, Depth Estimation...)       |
+| `05-Models/`        | Карточки моделей с бенчмарками и frontmatter-метаданными                      |
+| `06-Benchmarks/`    | Датасеты, leaderboards, SOTA-результаты                                       |
+| `07-Code-Snippets/` | Переиспользуемые паттерны кода Python/PyTorch                                 |
+| `08-MOCs/`          | Навигационные хабы (Maps of Content)                                          |
+| `09-Archive/`       | Завершённые проекты и устаревший контент                                      |
+| `_Templates/`       | Шаблоны Templater для создания новых заметок                                  |
+| `raw/`              | **Karpathy pattern**: исходные документы, PDF, репозитории (человек отбирает) |
+| `wiki/`             | **Karpathy pattern**: скомпилированная LLM-база из .md-файлов (ты пишешь)     |
+| `schema/`           | **Karpathy pattern**: инструкции для LLM, правила, промпты                    |
 
 ## Naming Conventions
 
