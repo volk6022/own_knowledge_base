@@ -14,25 +14,27 @@ tags: [type/index]
 
 ---
 
-## CV Tasks
+## ML / Computer Vision
+
+### CV Tasks
 
 *(пусто — добавляй статьи через `/wiki <тема>`)*
 
-## Concepts
+### Concepts
 
 - [[layer-fusion]] — слияние CUDA-kernels для ускорения inference; Conv+BN+ReLU → один kernel
 
-## Models
+### Models
 
 *(пусто)*
 
-## Benchmarks
+### Benchmarks
 
 *(пусто)*
 
-## Tools & Methods
+### Tools & Methods
 
-### Inference Optimization
+#### Inference Optimization
 
 - [[tensorrt]] — NVIDIA TensorRT: SDK для оптимизации DL моделей на GPU; 3–6× speedup vs PyTorch
 - [[tensorrt-quantization]] — INT8/FP8/BF16 квантизация в TRT: PTQ, QAT, калибраторы, форматы точности
@@ -40,4 +42,12 @@ tags: [type/index]
 
 ---
 
-> **Как наполнять:** Положи материал в `raw/` → попроси агента `/save <имя файла>` или `/wiki <тема>`
+## Другие домены
+
+> Домены добавляются командой `/add-domain <name>`. Секции появляются здесь автоматически.
+
+*(пусто)*
+
+---
+
+> **Как наполнять:** Положи материал в `raw/` (или `raw/<domain_id>/`) → попроси агента `/save <имя файла>` или `/wiki <тема>`

@@ -10,30 +10,38 @@ Use this skill when the user invokes `/wiki`, `/save`, `/autoresearch`, or any r
 Create or update a wiki article on the given topic.
 
 **Process:**
-1. Check if an article already exists in `wiki/` — search with Glob `wiki/**/*.md` and Grep for the topic name
-2. If `raw/` contains source material on this topic, read it first
-3. Write a comprehensive, well-linked `.md` file to `wiki/` following the schema below
-4. Add wikilinks to related concepts, models, papers that exist or should exist in the vault
-5. Always fill in full YAML frontmatter
+1. Check if an article already exists — search with Glob `wiki/**/*.md` and Grep for the topic name
+2. Determine domain:
+   - If topic clearly belongs to a domain (10+), use that domain's wiki subfolder
+   - If source is in `raw/<domain_id>/`, use that domain
+   - Default: ML domain (`wiki/` or `wiki/ml/`)
+3. If `raw/` or `raw/<domain_id>/` contains source material on this topic, read it first
+4. Write a comprehensive, well-linked `.md` file following the schema below
+5. Add wikilinks to related concepts, models, papers that exist or should exist in the vault
+6. Always fill in full YAML frontmatter (include `domain:` field for non-ML domains)
 
-**Output path:** `wiki/<kebab-case-topic>.md`
+**Output path:**
+- ML: `wiki/<kebab-case-topic>.md`
+- Other domains: `wiki/<domain_id>/<kebab-case-topic>.md`
 
 ---
 
 ### `/save <source>`
-Process a source from `raw/` and compile it into `wiki/`.
+Process a source from `raw/` and compile it into the vault.
 
 **Process:**
-1. Read the source file from `raw/`
-2. Determine the type: paper, concept, model, benchmark, tutorial
-3. Apply the appropriate template from `_Templates/`
-4. Write the compiled article to the correct directory:
-   - Paper → `02-Papers/`
-   - Model → `05-Models/`
-   - Concept → `03-Concepts/`
-   - Benchmark → `06-Benchmarks/`
-   - General wiki → `wiki/`
-5. Add backlinks in relevant MOC files in `08-MOCs/`
+1. Read the source file from `raw/` or `raw/<domain_id>/`
+2. Determine domain from source path or content:
+   - Source in `raw/<domain_id>/` → that domain
+   - Source in `raw/` root → infer from content or ask user
+3. Determine the type: paper, concept, model, benchmark, tutorial, resource
+4. Apply the appropriate template:
+   - ML (00-09): `_Templates/`
+   - Other domain: `NN-Domain/_templates/` → fallback to `_Templates/`
+5. Write the compiled article to the correct directory:
+   - **ML domain:** Paper → `02-Papers/`, Model → `05-Models/`, Concept → `03-Concepts/`, Benchmark → `06-Benchmarks/`, General → `wiki/`
+   - **Other domain:** Concept → `NN-Domain/Concepts/`, Resource → `NN-Domain/Resources/`, General → `wiki/<domain_id>/`
+6. Add backlinks in relevant MOC files (`08-MOCs/` or domain MOC)
 
 ---
 
@@ -42,11 +50,12 @@ Research a topic and populate the wiki with findings.
 
 **Process:**
 1. Break the question into sub-topics
-2. For each sub-topic, create or update a wiki article in `wiki/`
-3. Cross-link articles with `[[wikilinks]]`
-4. Create or update the relevant MOC in `08-MOCs/`
-5. Set `confidence_level: medium` and add source references
-6. End with a summary of what was created/updated
+2. Determine domain for the research
+3. For each sub-topic, create or update a wiki article in `wiki/` or `wiki/<domain_id>/`
+4. Cross-link articles with `[[wikilinks]]`
+5. Create or update the relevant MOC in `08-MOCs/` or domain folder
+6. Set `confidence_level: medium` and add source references
+7. End with a summary of what was created/updated
 
 ---
 
@@ -95,14 +104,19 @@ tags: [type/wiki, ...]
 
 ## Index File
 
-Maintain `wiki/INDEX.md` as a table of contents:
+Maintain `wiki/INDEX.md` as a table of contents, organized by domain:
 
 ```markdown
 # Wiki Index
-## CV Tasks
+## ML / Computer Vision
+### CV Tasks
 - [[topic]] — one-line description
-## Concepts
+### Concepts
 ...
+
+## Другие домены
+### <Domain Name>
+- [[topic]] — one-line description
 ```
 
-Update this file whenever new wiki articles are created.
+Update the correct domain section whenever new wiki articles are created.

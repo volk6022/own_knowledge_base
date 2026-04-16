@@ -7,32 +7,57 @@
 
 ## Роль агента
 
-Ты — куратор персональной базы знаний ML/CV-инженера. Твоя работа:
+Ты — куратор персональной мульти-доменной базы знаний. Твоя работа:
 1. Компилировать сырые материалы из `raw/` в структурированные статьи в `wiki/`
 2. Поддерживать связи между концептами через `[[wikilinks]]`
 3. Следить за актуальностью через frontmatter
 4. Отвечать на вопросы, опираясь на содержимое vault
+5. Работать с несколькими доменами — маршрутизировать контент в правильный домен
 
 ---
 
 ## Workflow: raw/ → wiki/
 
 ```
-raw/source.pdf или raw/article.md
+raw/source.pdf или raw/<domain_id>/article.md
     ↓
 Читаю и анализирую содержимое
     ↓
-Определяю тип: paper | model | concept | benchmark | tutorial
+Определяю домен (по пути, тегам или контексту)
     ↓
-Применяю шаблон из _Templates/
+Определяю тип: paper | model | concept | benchmark | tutorial | resource
+    ↓
+Применяю шаблон:
+  ML (00-09): _Templates/
+  Другой домен: NN-Domain/_templates/ → fallback к _Templates/
     ↓
 Пишу в правильную директорию:
-  02-Papers/ | 03-Concepts/ | 05-Models/ | 06-Benchmarks/ | wiki/
+  ML: 02-Papers/ | 03-Concepts/ | 05-Models/ | 06-Benchmarks/ | wiki/ | wiki/ml/
+  Домен X: NN-Domain/Concepts/ | NN-Domain/Resources/ | wiki/<domain_id>/
     ↓
-Добавляю ссылку в соответствующий MOC (08-MOCs/)
+Добавляю ссылку в соответствующий MOC (08-MOCs/ или NN-Domain/MOC)
     ↓
-Обновляю wiki/INDEX.md
+Обновляю wiki/INDEX.md (соответствующую секцию домена)
 ```
+
+---
+
+## Работа с доменами
+
+### Маршрутизация контента
+
+- Источник в `raw/<domain_id>/` → контент этого домена
+- Источник в `raw/` (корень) → определи домен из контекста или спроси пользователя
+- ML-контент → папки 01-07 и `wiki/` или `wiki/ml/`
+- Контент домена X → `NN-Domain/Concepts/`, `NN-Domain/Resources/` или `wiki/<domain_id>/`
+
+### Теги и шаблоны домена
+
+При работе с доменом 10+:
+1. Читай `NN-Domain/_domain.yaml` для `tag_namespace` и `tag_axes`
+2. Используй доменные шаблоны из `NN-Domain/_templates/` (если есть)
+3. Теги: `#<domain_id>/<axis>/<value>` (напр. `#crypto/topic/defi`)
+4. Frontmatter: добавляй `domain: <domain_id>`
 
 ---
 
@@ -71,6 +96,7 @@ raw/source.pdf или raw/article.md
 - ❌ Не меняй уверенность с low/unverified на high без проверки источника
 - ❌ Не создавай дублирующие концепт-заметки — проверяй существующие через Grep
 - ❌ Не добавляй бенчмарки без даты `sota_as_of`
+- ❌ Не смешивай контент разных доменов в одной заметке
 
 ---
 
@@ -82,7 +108,7 @@ raw/source.pdf или raw/article.md
 
 ---
 
-## Автоматическое обновление бенчмарков
+## Автоматическое обновление бенчмарков (ML-специфично)
 
 Для поддержания актуальности SOTA используй Hugging Face Hub API:
 

@@ -1,28 +1,36 @@
-# ML/CV Knowledge Base
+# Personal Knowledge Base
 
-Персональный vault ML/CV-инженера на базе Obsidian + Claude. Архитектура: MOC + Zettelkasten + [Karpathy LLM Wiki](https://github.com/karpathy/llm.c/tree/master/dev/lm) pattern.
+Персональный мульти-доменный vault на базе Obsidian + Claude. Архитектура: MOC + Zettelkasten + [Karpathy LLM Wiki](https://github.com/karpathy/llm.c/tree/master/dev/lm) pattern.
 
 ---
 
 ## Структура
 
 ```
-local_knowlege_base/
-├── 00-Inbox/          # быстрые заметки, клипы, необработанные идеи
+own_knowledge_base/
+├── 00-Inbox/          # быстрые заметки, клипы (общий)
 ├── 01-Projects/       # активные ML-проекты
 ├── 02-Papers/         # заметки по статьям (arXiv, Semantic Scholar)
-├── 03-Concepts/       # атомарные концепты (Attention, BN, FPN, ViT...)
+├── 03-Concepts/       # атомарные ML-концепты (Attention, BN, FPN, ViT...)
 ├── 04-Tasks/          # CV-задачи как MOC (Detection, Segmentation...)
 ├── 05-Models/         # карточки моделей с бенчмарками
 ├── 06-Benchmarks/     # датасеты, leaderboards, SOTA
 ├── 07-Code-Snippets/  # переиспользуемые паттерны PyTorch/Python
-├── 08-MOCs/           # навигационные хабы (Maps of Content)
-├── 09-Archive/        # завершённые проекты и устаревший контент
-├── raw/               # исходники: PDF, репозитории, клипы (человек кладёт)
-├── wiki/              # скомпилированная LLM-база (Claude пишет)
+├── 08-MOCs/           # навигационные хабы (Maps of Content) — кросс-доменные
+├── 09-Archive/        # завершённые проекты (общий)
+├── 10-DomainName/     # ← дополнительные домены создаются через /add-domain
+│   ├── Concepts/
+│   ├── Resources/
+│   ├── _templates/
+│   ├── MOC - DomainName.md
+│   └── _domain.yaml
+├── raw/               # исходники (flat + raw/<domain_id>/ подпапки)
+├── wiki/              # скомпилированная LLM-база (flat + wiki/<domain_id>/)
 ├── schema/            # инструкции для Claude: llm-instructions.md, mcp-setup.md
-└── _Templates/        # шаблоны Templater для новых заметок
+└── _Templates/        # базовые шаблоны Templater
 ```
+
+**Домены:** папки 00-09 — домен ML/CV. Новые домены (10+) создаются командой `/add-domain <name>` и получают минимальную структуру (Concepts/, Resources/, MOC, шаблоны). Подпапки добавляются по мере необходимости.
 
 ---
 
@@ -56,18 +64,19 @@ setup-mcps.bat
 | obsidian-wiki | `/autoresearch <вопрос>` | Исследует тему и добавляет в wiki/ |
 | obsidian-wiki | `/save <url>` | Сохраняет источник из raw/ в wiki/ |
 | kb-lint | `/kb-lint` | Health check: orphans, broken links, staleness |
+| add-domain | `/add-domain <name>` | Создаёт новый домен знаний (папка 10+, MOC, шаблоны) |
 
 ---
 
 ## Соглашения
 
-**Именование файлов:** `kebab-case.md` для концептов, `AuthorYear-Title.md` для статей, `ModelName-Version.md` для моделей.
+**Именование файлов:** `kebab-case.md` для концептов, `AuthorYear-Title.md` для статей, `ModelName-Version.md` для моделей/ресурсов.
 
-**Frontmatter** обязателен в каждой заметке — шаблоны в `_Templates/`.
+**Frontmatter** обязателен в каждой заметке — базовые шаблоны в `_Templates/`, доменные в `NN-Domain/_templates/`.
 
-**Теги:** `#task/detection`, `#approach/transformer`, `#model/yolo`, `#metric/map` и т.д.
+**Теги:** ML: `#task/detection`, `#approach/transformer`, `#model/yolo`. Другие домены: `#<domain_id>/<axis>/<value>`.
 
-**Правило raw→wiki:** Ты кладёшь материал в `raw/`, Claude компилирует в `wiki/`.
+**Правило raw→wiki:** Кладёшь материал в `raw/` (или `raw/<domain_id>/`), Claude компилирует в `wiki/` (или `wiki/<domain_id>/`).
 
 ---
 
