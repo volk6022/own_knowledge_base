@@ -4,17 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "7bd02c4484d52f24",
+        "id": "45eb6356a931d05b",
         "type": "tabs",
         "children": [
           {
-            "id": "f016d3dc21c98a25",
+            "id": "bd200f9bcb734e75",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Graph view"
+              "type": "markdown",
+              "state": {
+                "file": "raw/Российский рынок строительных тендеров.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Российский рынок строительных тендеров"
             }
           }
         ]
@@ -196,8 +200,16 @@
       "smart-lookup:Smart Lookup: Open lookup view": false
     }
   },
-  "active": "f016d3dc21c98a25",
+  "active": "bd200f9bcb734e75",
   "lastOpenFiles": [
+    "raw/compass_artifact_wf-688c9870-1567-414c-be59-60bb89cd002c_text_markdown.md",
+    "raw/Автоматизация чтения тендерной документации.md",
+    "raw/Допустимые погрешности координат земельных участков в России.md",
+    "raw/Нормы погрешности межевания в России.md",
+    "raw/Российский рынок строительных тендеров.md",
+    "raw/Защита от обвинения в загрязнении почвы бензопиреном.md",
+    "raw/Защита от иска Россельхознадзора о бензапирене.md",
+    "raw/Untitled.md",
     "CLAUDE.md",
     "README.md",
     "YOLOv8.md",
